@@ -282,7 +282,7 @@ for row in range(pixmap.get_rows()):
         pixmap.setpxl(pixel(values), row, col)
 
 
-# Pretty easy to grasp. Just flip it by swapping all the pixels. 
+# Check for the set flags
 if(args.flip_horiz):
     pixmap.flip_horizontal()
 
@@ -295,7 +295,7 @@ if(args.greyscale):
 if(args.invert):
     pixmap.invert();
 
-# Flatten all the in args
+# Flatten all the input args
 if(args.flatten != None):
     print(list(args.flatten[0]))
     for color in list(args.flatten[0]):
@@ -316,7 +316,7 @@ directory = os.path.dirname(os.path.abspath(args.output[0]))
 if not os.path.exists(directory):
     os.makedirs(directory)
 
-# Write the serialzation to the file. 
+# Write the serialized pixmap to the file. 
 with open(args.output[0], "w+") as f:
     f.write(pixmap.serialize())
 
