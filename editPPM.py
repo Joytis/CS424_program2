@@ -1,9 +1,35 @@
-# This is really just a collection of pixels and functions to operate on said pixels
-# NOTE(clark): pixels are just tuples of 3 numbers between 0 and 255
+#===========================================================================================
+# Clark Chambers
+# November 2, 2017
+# CS424-01
+#===========================================================================================
+# This is a simple program that reads an ASCII ppm image, allows simple manipulations on the image,
+#   and then outputs to a specified file. Manipulations include: 
+#      --flip_horiz
+#      --flip_vert
+#      --greyscale
+#      --invert
+#      --flatten
+#      --horiz_blur
+#      --contrast
+#      --rand_noise
+# NOTE(clark): -h will bring up a help prompt, as is standard!
+# Usage:
+#   python[3] editPPM.py INPUT_FILE -o OUTPUT_FILE [OPTIONAL_FLAGS]
+# Example usage:
+#   python editPPM.py coolimage.ppm -o coolerimage.ppm --flip_horiz --greyscale --invert --contrast
+#
 # NOTE(clark): I was having a  bunch of fun and just implemented them all! 
+# NOTE(clark): If a subset for grading is required, please use these as the graded functions:
+#      --flip_horiz
+#      --flip_vert
+#      --greyscale
+#      --flatten
+
 import sys, os, fileinput, argparse, random
 
-# Just a wrapper on pixel values
+# A small wrapper on pixel values that can return various iterations of itself in different states of color
+# NOTE(clark): pixels are just tuples of 3 numbers between 0 and 255
 class pixel:
 
     # Sets the values and range checks. ezpz.  
@@ -188,7 +214,7 @@ class ppmimage:
 # Create argument parser for the program
 # ======================================
 # The argument parser
-# TODO(clark): MAKE SURE THAT YOU GIVE A USER INTERFACE FOR THE PROGRAM
+# This ugly block only serves to make sure arguments are parsed correctly for the program.
 aparser = argparse.ArgumentParser(description = "Manipulates PPM images", prog = "editPPM", \
   usage='%(prog)s I -o O [optionsl args]\nexample: coolimage.ppm -o coolerimage.ppm -fh -b -a rb\n')
 aparser.add_argument('input', metavar='I', type=str, help='The input ppm image for processing', nargs=1)
